@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>London Brogues</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-sans">
+
+    <div class="flex flex-col md:flex-row justify-center items-center bg-red-900 text-white py-2 text-sm">
+        <ul class="flex flex-wrap justify-center gap-4 px-4">
+            <li>Free UK shipping on all orders</li>
+        </ul>
+        <ul class="flex flex-wrap justify-center gap-2 px-4 mt-2 md:mt-0">
+            <li>See our 332 reviews on</li>
+            <li class="font-bold underline cursor-pointer">Trustpilot</li>
+        </ul>
+    </div>
+
+    <div class="flex justify-between items-center p-4 bg-white shadow-md">
+        <h1 class="text-2xl md:text-3xl font-bold mx-4">LONDON BROGUES</h1>
+        <button id="menu-toggle" class="md:hidden block text-xl">☰</button>
+        <ul id="menu" class="hidden md:flex flex-wrap gap-4 mx-4 text-lg">
+            <li class="cursor-pointer hover:text-red-700">Home</li>
+            <li class="cursor-pointer hover:text-red-700">Shoes</li>
+            <li class="cursor-pointer hover:text-red-700">Boots</li>
+            <li class="cursor-pointer hover:text-red-700">Weddings</li>
+            <li class="cursor-pointer hover:text-red-700">Junior</li>
+            <li class="cursor-pointer hover:text-red-700">Accessories</li>
+            <li class="cursor-pointer hover:text-red-700">Style Blog</li>
+            <li class="cursor-pointer hover:text-red-700">Contact</li>
+            <li class="cursor-pointer hover:text-red-700">Profile</li>
+            <li class="cursor-pointer hover:text-red-700">Cart</li>
+        </ul>
+    </div>
+
+    <div class="relative h-[70vh] w-full">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <img src="https://londonbrogues.co.uk/cdn/shop/t/26/assets/lb-header.jpg" alt="Handcrafted Shoes"
+            class="h-full w-full object-cover">
+        <div class="absolute top-[60%] left-[6%] text-center px-4 md:left-[30%] md:top-[50%]">
+            <p class="text-white text-xl md:text-2xl font-bold">Handcrafted Men's Brogues & Boots</p>
+            <p class="text-white text-xl md:text-4xl font-bold">British by design. Quality by choice.</p>
+            <h1 class="text-white p-2 text-2xl md:text-4xl border m-3 hover:bg-red-600 cursor-pointer">EXPLORE OUR
+                BROGUES</h1>
+        </div>
+    </div>
+    <div class="text-center">
+        <h1>London Brogues Oxford Selection</h1>
+        <div class="flex pl-5 pr-5 space-x-4">
+            <h1>GATSBY</h1>
+            <h1>SHELBY</h1>
+            <h1>TOMMY</h1>
+            <h1>SIDNEY</h1>
+            <h1>ALBERT</h1>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-clo-1 md:grid-cols-4 lg:grid-cols-5 gap-6 p-4 border  m-4">
+        <div class="text-center">
+            <img src="https://londonbrogues.co.uk/cdn/shop/products/SIDNEYTAN3Q.jpg"
+                alt="Sidney Oxford Tan handcrafted shoes" class="w-full h-auto mb-2">
+            <h1 class="text-xl text-black">Sidney Oxford Tan</h1>
+            <h2 class="text-lg text-black">£87.00</h2>
+        </div>
+        <div class="text-center">
+            <img src="https://londonbrogues.co.uk/cdn/shop/files/BLACKPATENTOXFORD.jpg?v=1698323590&width=360"
+                alt="Sidney Oxford Tan handcrafted shoes" class="w-full h-auto mb-2">
+            <h1 class="text-xl text-black">Sidney Oxford Tan</h1>
+            <h2 class="text-lg text-black">£87.00</h2>
+        </div>
+        <div class="text-center">
+            <img src="https://londonbrogues.co.uk/cdn/shop/files/BLACKPATENTbrogue.jpg?v=1698323764&width=360"
+                alt="Sidney Oxford Tan handcrafted shoes" class="w-full h-auto mb-2">
+            <h1 class="text-xl text-black">Sidney Oxford Tan</h1>
+            <h2 class="text-lg text-black">£87.00</h2>
+        </div>
+        <div class="text-center">
+            <img src="https://londonbrogues.co.uk/cdn/shop/products/SIDNEYBLACK3Q.jpg?v=1666013776&width=360"
+                alt="Sidney Oxford Tan handcrafted shoes" class="w-full h-auto mb-2">
+            <h1 class="text-xl text-black">Sidney Oxford Tan</h1>
+            <h2 class="text-lg text-black">£87.00</h2>
+        </div>
+        <div class="text-center">
+            <img src="https://londonbrogues.co.uk/cdn/shop/products/LBTAN.jpg?v=1631795146&width=360"
+                alt="Sidney Oxford Tan handcrafted shoes" class="w-full h-auto mb-2">
+            <h1 class="text-xl text-black">Sidney Oxford Tan</h1>
+            <h2 class="text-lg text-black">£87.00</h2>
+        </div>
+    </div>
+    <div class="relative h-[20%]" >
+        <img src="https://londonbrogues.co.uk/cdn/shop/t/26/assets/lb-brogues.jpg?v=126712014838268970381740671550"
+            alt="Brogues" class="w-full h-full object-cover">
+        <div class="absolute top-[70%] left-0 w-full  text-white">
+            <h1 class="text-white   ">Groom or Guest</h1>
+            <h1 class="text-white text-2xl font-bold">The brogues to suit your style</h1>
+            <h1 class="text-white ">Shop our wedding collection</h1>
+        </div>
+    </div>
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            let menu = document.getElementById('menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('transition-all');
+        });
+    </script>
+
+</body>
+
+</html>
