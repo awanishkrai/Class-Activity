@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+    <nav class="bg-pink-200 flex items-center p-5">
+        <div class="flex gap-6 justify-center w-full">
+            <h1 class="font-semibold text-gray-700 cursor-pointer">Home</h1>
+            <h1 class="font-semibold text-gray-700 cursor-pointer">About Us</h1>
+            <h1 class="font-semibold text-gray-700 cursor-pointer" id="hii">Contact Us</h1>
+        </div>
+    </nav>
+
+    <div class="flex justify-center mt-10">
+        <div class="hidden w-1/2 bg-white border border-gray-300 p-6 rounded-md shadow-md" id="abc">
+            <h1 class="text-xl font-semibold text-center text-gray-800 mb-4">Contact Form</h1>
+            <form class="flex flex-col gap-4">
+                <label class="text-gray-700 font-medium">Name</label>
+                <input type="text"
+                    class="border border-gray-300 p-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-pink-500">
+            </form>
+        </div>
+    </div>
+
+    <div class="flex justify-center mt-10">
+        <img src="https://www.alexbirkett.com/wp-content/uploads/2022/11/iamalexbirkett_jacked_aliens_wandering_through_lord_of_the_ring_0bee4dd7-c4a1-4f73-9b1b-f407f052054f.png"
+            alt="AI Art" class="h-80 w-auto rounded-md shadow-md">
+    </div>
+
+    <script>
+        let h = document.getElementById("abc");
+        let hii = document.getElementById("hii");
+        hii.addEventListener("click", contact);
+
+        function contact() {
+            h.classList.toggle("hidden");
+        }
+    </script>
+
+</body>
+
+</html>
