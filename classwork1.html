@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .slide {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .active {
+            opacity: 1 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w-[60%] h-[60vh] relative mx-auto mt-[50px]">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJxo2NFiYcR35GzCk5T3nxA7rGlSsXvIfJwg&s"
+            alt="Slide 1" class="slide absolute w-full h-full object-cover">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFYqoKTu_o3Zns2yExbst2Co84Gpc2Q1RJbA&s"
+            alt="Slide 2" class="slide absolute w-full h-full object-cover">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc9APxkj0xClmrU3PpMZglHQkx446nQPG6lA&s"
+            alt="Slide 3" class="slide absolute w-full h-full object-cover">
+        <img src="https://png.pngtree.com/thumb_back/fh260/background/20240801/pngtree-new-cb-background-images-photos-pics-wallpaper-pictures-image_16123145.jpg"
+            alt="Slide 4" class="slide absolute w-full h-full object-cover">
+    </div>
+    <div class="flex justify-between mx-auto mt-4 w-[60%]">
+        <button id="prev" class="bg-gray-800 text-white py-2 px-4 rounded">Prev</button>
+        <button id="next" class="bg-gray-800 text-white py-2 px-4 rounded">Next</button>
+    </div>
+
+    <script>
+        let slides = document.querySelectorAll(".slide");
+        let count = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.add("active");
+                } else {
+                    slide.classList.remove("active");
+                }
+            });
+        }
+
+        document.getElementById("next").addEventListener("click", () => {
+            count = (count + 1) % slides.length;
+            showSlide(count);
+        });
+
+        document.getElementById("prev").addEventListener("click", () => {
+            count = (count - 1 + slides.length) % slides.length;
+            showSlide(count);
+        });
+
+     
+        showSlide(count);
+    </script>
+</body>
+
+</html>

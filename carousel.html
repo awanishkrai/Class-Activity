@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tailwind Carousel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="relative w-full max-w-2xl overflow-hidden rounded-lg shadow-lg">
+        <div id="carousel" class="flex transition-transform duration-700 ease-in-out">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.Q1xjNu2aiblEeOSQ20HuQgHaEy&pid=Api&P=0&h=180?text=Slide+1" class="w-full shrink-0" alt="Slide 1">
+            <img src="https://www.powertrafic.fr/wp-content/uploads/2023/04/image-ia-exemple.png?text=Slide+2" class="w-full shrink-0" alt="Slide 2">
+            <img src="https://my.alfred.edu/zoom/_images/foster-lake.jpg?text=Slide+3" class="w-full shrink-0" alt="Slide 3">
+        </div>
+
+      
+        <button onclick="prevSlide()"
+            class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-opacity-75">
+            &#10094;
+        </button>
+        <button onclick="nextSlide()"
+            class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-opacity-75">
+            &#10095;
+        </button>
+    </div>
+
+    <script>
+        const carousel = document.getElementById('carousel');
+        const slides = carousel.children;
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            const offset = -currentIndex * 100;
+            carousel.style.transform = `translateX(${offset}%)`;
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateCarousel();
+        }
+
+        // Optional: Auto-slide
+        setInterval(nextSlide, 5000);
+    </script>
+
+</body>
+
+</html>

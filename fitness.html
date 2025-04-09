@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Sleep Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-cover bg-center min-h-screen" style="background-image: url('sleep-brain-reset-neuroscience.webp')">
+
+    <!-- Navbar -->
+    <nav class="bg-black/70 text-white p-4 shadow-md">
+        <div class="container mx-auto text-lg font-semibold">AI Sleep Assistant</div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="flex justify-center items-center mt-10 mb-32 px-4">
+        <div class="bg-white bg-opacity-90 rounded-xl shadow-lg p-6 w-full max-w-md">
+            <h1 class="text-2xl font-bold text-center text-blue-700 mb-4">AI Sleep Assistant</h1>
+
+            <label for="bedtime" class="block text-left font-medium">Bedtime:</label>
+            <input type="time" id="bedtime" aria-label="Bedtime"
+                class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 mb-4" />
+
+            <label for="waketime" class="block text-left font-medium">Wake Time:</label>
+            <input type="time" id="waketime" aria-label="Wake Time"
+                class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 mb-4" />
+
+            <label for="quality" class="block text-left font-medium">Sleep Quality:</label>
+            <select id="quality" aria-label="Sleep Quality"
+                class="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 mb-4">
+                <option value="Excellent">Excellent</option>
+                <option value="Good">Good</option>
+                <option value="Fair">Fair</option>
+                <option value="Poor">Poor</option>
+            </select>
+
+            <button onclick="getSleepInsights()"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200">
+                Get Sleep Insights
+            </button>
+
+            <div class="text-center text-sm text-gray-600 mt-3 hidden" id="loading">Loading...</div>
+
+            <h3 class="mt-6 text-lg font-semibold text-gray-800">AI Insights:</h3>
+            <p id="insights" class="mt-2 text-gray-700 whitespace-pre-line"></p>
+            <p class="text-red-600 mt-2 text-sm" id="error-message"></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black/70 text-white text-center py-4 fixed bottom-0 w-full text-sm">
+        &copy; 2025 AI Sleep Assistant. Sleep smart, live better. 😴
+    </footer>
+
+    <script>
+        const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyBIgCD1RN9VBix_sxZ9K2ba3YxSdRIBlkE"; // Replace with your API key
+
+        function isValidTimeRange(bedtime, waketime) {
+            const bedtimeDate = new Date(`1970-01-01T${bedtime}:00`);
+            const waketimeDate = new Date(`1970-01-01T${waketime}:00`);
+            return waketimeDate > bedtimeDate;
+        }
+
+        async function getSleepInsights() {
+            const bedtime = document.getElementById("bedtime").value;
+            const waketime = document.getElementById("waketime").value;
+            const quality = document.getElementById("quality").value;
+            const loadingIndicator = document.getElementById("loading");
+            const errorMessage = document.getElementById("error-message");
+            const insightsElement = document.getElementById("insights");
+
+            errorMessage.innerText = "";
+            insightsElement.innerText = "";
+
+            if (!bedtime || !waketime) {
+                alert("Please enter bedtime and wake time.");
+                return;
+            }
+
+            if (!isValidTimeRange(bedtime, waketime)) {
+                alert("Wake time must be after bedtime.");
+                return;
+            }
+
+            const prompt = `Analyze my sleep pattern:
+            - Bedtime: ${bedtime}
+            - Wake Time: ${waketime}
+            - Quality: ${quality}
+            Provide insights and tips to improve my sleep.`;
+
+            const requestBody = {
+                contents: [{ role: "user", parts: [{ text: prompt }] }]
+            };
+
+            loadingIndicator.classList.remove("hidden");
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+
+                const data = await response.json();
+                insightsElement.innerText = data.candidates[0].content.parts[0].text;
+            } catch (error) {
+                console.error("Error fetching AI insights:", error);
+                errorMessage.innerText = "Failed to get sleep insights. Please try again later.";
+            } finally {
+                loadingIndicator.classList.add("hidden");
+            }
+        }
+    </script>
+</body>
+
+</html>
